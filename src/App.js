@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './Header';
+import Popup from './Popup';
+import {useEffect} from 'react';
+import { useDisplay } from './slices/cssSlice';
+
+
 
 function App() {
+  const display=useDisplay().blur
+
+
+  useEffect(()=>{
+    const offlineHandler=()=>{
+         
+    }
+    const onlineHandler=()=>{
+
+    }
+    window.addEventListener("offline",offlineHandler)
+    window.addEventListener("online",onlineHandler)
+  },[])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!display && <Header/>}
+     {display && <Popup />}
+    
     </div>
   );
 }
